@@ -1,0 +1,6 @@
+{
+  "name": "The Sol Explorers - Mars Jezero Crater Mission Visualization",
+  "description": "Cinematic scientifically grounded NASA Space Apps Challenge visualization and mission interface tracking Mars descent into Jezero Crater.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
