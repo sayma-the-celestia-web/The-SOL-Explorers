@@ -19,8 +19,15 @@ export const InteractiveMartianMap: React.FC<InteractiveMartianMapProps> = ({
   const [hoveredWaypoint, setHoveredWaypoint] = useState<MissionWaypoint | null>(null);
 
   // Satellite and surface image paths
-  const orthoImage = '/src/assets/images/jezero_crater_ortho_1790269015798.jpg';
-  const obliqueImage = '/src/assets/images/jezero_delta_surface_1790269027984.jpg';
+ const orthoImage = new URL(
+  '../assets/images/jezero_crater_ortho_1790269015798.jpg',
+  import.meta.url
+).href;
+
+const obliqueImage = new URL(
+  '../assets/images/jezero_delta_surface_1790269027984.jpg',
+  import.meta.url
+).href;
 
   const handleZoomIn = () => setZoomLevel((z) => Math.min(z + 0.25, 2.2));
   const handleZoomOut = () => setZoomLevel((z) => Math.max(z - 0.25, 0.85));
@@ -162,23 +169,29 @@ export const InteractiveMartianMap: React.FC<InteractiveMartianMapProps> = ({
 
               {/* SVG Rover Traverse Path & Sol Checkpoints */}
               {showRoverPath && (
-                <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                  {/* Traverse line */}
-                  <polyline
-                    points="48% 54%, 45% 62%, 40% 52%, 36% 50%, 32% 48%, 30% 24%"
-                    fill="none"
-                    stroke="#f59e0b"
-                    strokeWidth="2.5"
-                    strokeDasharray="4 3"
-                  />
-                  {/* Trajectory dots */}
-                  <circle cx="48%" cy="54%" r="4" fill="#10b981" />
-                  <circle cx="45%" cy="62%" r="3" fill="#f59e0b" />
-                  <circle cx="40%" cy="52%" r="3" fill="#f59e0b" />
-                  <circle cx="32%" cy="48%" r="4" fill="#38bdf8" />
-                  <circle cx="30%" cy="24%" r="3" fill="#f59e0b" />
-                </svg>
-              )}
+  <svg
+    className="absolute inset-0 w-full h-full pointer-events-none"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+  >
+    {/* Traverse line */}
+    <polyline
+      points="48,54 45,62 40,52 36,50 32,48 30,24"
+      fill="none"
+      stroke="#f59e0b"
+      strokeWidth="0.5"
+      strokeDasharray="1.5 1"
+      vectorEffect="non-scaling-stroke"
+    />
+
+    {/* Trajectory dots */}
+    <circle cx="48" cy="54" r="1" fill="#10b981" />
+    <circle cx="45" cy="62" r="0.75" fill="#f59e0b" />
+    <circle cx="40" cy="52" r="0.75" fill="#f59e0b" />
+    <circle cx="32" cy="48" r="1" fill="#38bdf8" />
+    <circle cx="30" cy="24" r="0.75" fill="#f59e0b" />
+  </svg>
+)}
 
               {/* Interactive Waypoint Pins */}
               {JEZERO_WAYPOINTS.map((wp) => {
