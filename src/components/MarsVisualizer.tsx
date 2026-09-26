@@ -465,9 +465,9 @@ export const MarsVisualizer: React.FC<MarsVisualizerProps> = ({
 
     // 6. NASA Calibrated Mars Planetary Textures & Shaders
     const textureLoader = new THREE.TextureLoader();
-    const marsColorTexturePath = '/src/assets/images/mars_nasa_truecolor_1790278196036.jpg';
-    const marsBumpTexturePath = '/src/assets/images/mars_elevation_bump_1790271817556.jpg';
-    const jezeroHiRISEPath = '/src/assets/images/jezero_crater_hirise_1790278218988.jpg';
+   // const marsColorTexturePath = '/src/assets/images/mars_nasa_truecolor_1790278196036.jpg';
+  //const marsBumpTexturePath = '/src/assets/images/mars_elevation_bump_1790271817556.jpg';
+  //const jezeroHiRISEPath = '/src/assets/images/jezero_crater_hirise_1790278218988.jpg';
 
     textureLoader.load(marsColorTexturePath, (marsTexture) => {
       marsTexture.wrapS = THREE.RepeatWrapping;
