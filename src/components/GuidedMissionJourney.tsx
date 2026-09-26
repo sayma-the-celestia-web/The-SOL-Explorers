@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { JOURNEY_CHAPTERS } from '../data/jezeroData';
 import { GuidePerspective, JourneyChapter } from '../types';
 import { soundManager } from '../services/soundManager';
+const jezeroOrthoImage = new URL(
+  '../assets/images/jezero_crater_ortho_1790269015798.jpg',
+  import.meta.url
+).href;
 import {
   Play,
   Pause,
@@ -308,26 +312,31 @@ export const GuidedMissionJourney: React.FC<GuidedMissionJourneyProps> = ({
                 />
 
                 {/* Rover Traverse Trail */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                  <polyline
-                    points="48% 54%, 45% 62%, 40% 52%, 36% 50%, 32% 48%, 30% 24%"
-                    fill="none"
-                    stroke="#f59e0b"
-                    strokeWidth="2"
-                    strokeDasharray="3 2"
-                  />
-                  {/* Waypoint pins */}
-                  {JOURNEY_CHAPTERS.map((ch, idx) => (
-                    <circle
-                      key={ch.id}
-                      cx={`${ch.mapPercent[0]}%`}
-                      cy={`${ch.mapPercent[1]}%`}
-                      r={idx === currentChapterIndex ? 4 : 2}
-                      fill={idx === currentChapterIndex ? '#38bdf8' : '#64748b'}
-                    />
-                  ))}
-                </svg>
+                <svg
+  className="absolute inset-0 w-full h-full pointer-events-none"
+  viewBox="0 0 100 100"
+  preserveAspectRatio="none"
+>
+  <polyline
+    points="48,54 45,62 40,52 36,50 32,48 30,24"
+    fill="none"
+    stroke="#f59e0b"
+    strokeWidth="0.5"
+    strokeDasharray="1.5 1"
+    vectorEffect="non-scaling-stroke"
+  />
 
+  {/* Waypoint pins */}
+  {JOURNEY_CHAPTERS.map((ch, idx) => (
+    <circle
+      key={ch.id}
+      cx={ch.mapPercent[0]}
+      cy={ch.mapPercent[1]}
+      r={idx === currentChapterIndex ? 4 : 2}
+      fill={idx === currentChapterIndex ? '#38bdf8' : '#64748b'}
+    />
+  ))}
+</svg>
                 {/* Active Waypoint Marker */}
                 <div
                   className="absolute -translate-x-1/2 -translate-y-1/2"
